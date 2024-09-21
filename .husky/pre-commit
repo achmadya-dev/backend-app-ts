@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo '🔍 Checking TypeScript, formatting, linting, and build before committing...'
+
+npm run check:types ||  (echo '❌ Please fix the TypeScript issues before committing.' && false)
+
+npm run check:format ||  (echo '❌ Please fix the formatting issues before committing.' && false)
+
+npm run check:lint ||  (echo '❌ Please fix the linting issues before committing.' && false)
+
+npm run build ||  (echo '❌ Please fix the build issues before committing.' && false)
+
+echo '✅ All checks passed. Committing...'
