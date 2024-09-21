@@ -32,9 +32,8 @@
     "prepare": "husky",
     "format": "npx prettier . --write",
     "check:types": "npx tsc --noEmit --pretty",
-    "check:lint": "npx eslint . --ext .ts",
-    "check:lint:fix": "npx eslint . --ext .ts --fix",
-    "check:format": "npx prettier . --check"
+    "check:lint": "npx eslint ./src",
+    "check:format": "npx prettier ./src --check"
   },
   "husky": {
     "hooks": {
