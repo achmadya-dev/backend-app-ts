@@ -1,0 +1,12 @@
+services:
+    db:
+        image: mysql
+        restart: always
+        container_name: ${DB_DATABASE}
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+        ports:
+            - ${DB_PORT}:3306
+        volumes:
+            - ./docker/${DB_CONNECTION}/data:/var/lib/mysql

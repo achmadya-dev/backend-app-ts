@@ -9,3 +9,4 @@ nodemon.json
 build
 public
 node_modules
+docker

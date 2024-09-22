@@ -1,0 +1,42 @@
+@baseURL = http://localhost:3000
+
+###
+# Find All Post
+GET {{ baseURL }}/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InVzZXIyIiwiZW1haWwiOiJ0ZXN0M0BleGFtcGxlLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzI3MDA4Mzk2LCJleHAiOjE3MjcwMDkyOTZ9.Eo2gQXvCgTyLF-jL3pWnYQCz8szGD-00Wm8q6ayxjKE
+
+
+###
+# Create Post
+POST {{ baseURL }}/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InVzZXIyIiwiZW1haWwiOiJ0ZXN0M0BleGFtcGxlLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzI3MDA2NzQ4LCJleHAiOjE3MjcwMDc2NDh9.1vfiQPqVpR_k-gaGj58ZrXrtQ7bcfk-_OIYr0prUUQY
+
+{
+    "title": "Post 1",
+    "content": "Content 1",
+    "authorId": 2
+}
+
+###
+# Find Post By Id
+GET {{ baseURL }}/api/posts/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InVzZXIyIiwiZW1haWwiOiJ0ZXN0M0BleGFtcGxlLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzI3MDA2NzQ4LCJleHAiOjE3MjcwMDc2NDh9.1vfiQPqVpR_k-gaGj58ZrXrtQ7bcfk-_OIYr0prUUQY
+
+
+###
+# Update Post
+PUT {{ baseURL }}/api/posts/6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InVzZXIyIiwiZW1haWwiOiJ0ZXN0M0BleGFtcGxlLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzI3MDA2NzQ4LCJleHAiOjE3MjcwMDc2NDh9.1vfiQPqVpR_k-gaGj58ZrXrtQ7bcfk-_OIYr0prUUQY
+
+{
+    "title": "Post 1 Updated",
+    "content": "Content 1 Updated",
+    "authorId": 2
+}
+
+###
+# Delete Post
+DELETE {{ baseURL }}/api/posts/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InVzZXIyIiwiZW1haWwiOiJ0ZXN0M0BleGFtcGxlLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzI3MDA2NzQ4LCJleHAiOjE3MjcwMDc2NDh9.1vfiQPqVpR_k-gaGj58ZrXrtQ7bcfk-_OIYr0prUUQY

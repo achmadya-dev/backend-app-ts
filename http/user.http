@@ -1,0 +1,32 @@
+@baseURL = http://localhost:3000
+
+###
+# Create User
+POST {{ baseURL }}/api/register
+Content-Type: application/json
+
+{
+    "name": "user2",
+    "email": "test3@example.com",
+    "password": "password1",
+    "confirmPassword": "password1",
+    "role": "USER"
+}
+
+
+###
+# Login User
+POST {{ baseURL }}/api/login
+Content-Type: application/json
+
+{
+    "email": "test3@example.com",
+    "password": "password1"
+}
+
+
+###
+# Refresh Token
+GET {{ baseURL }}/api/refresh-token
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InVzZXIyIiwiZW1haWwiOiJ0ZXN0M0BleGFtcGxlLmNvbSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzI3MDA4MzIwLCJleHAiOjE3Mjc2MTMxMjB9.AGmooLyjkLQRffYkRJspCSlNrcgiy3UdZizf1zJAHik
