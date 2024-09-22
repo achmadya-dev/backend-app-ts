@@ -47,7 +47,7 @@
     "build": "npx tsc && cp .env ./build",
     "prod": "node ./build/index.js",
     "prepare": "husky",
-    "format": "npx prettier . --write",
+    "format": "npx prettier ./src --write",
     "check:types": "npx tsc --noEmit --pretty",
     "check:lint": "npx eslint ./src",
     "check:format": "npx prettier ./src --check",
