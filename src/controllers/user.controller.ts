@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { inputLoginValidation, inputUserValidation } from "../validations/user.validation";
-import { createUserService, getUserByEmailService, getUserWithPostsService } from "../services/user.service";
+import { createUserService, getUserByEmailService, getCountUserPostsService } from "../services/user.service";
 import { compare, encrypt } from "../utils/bcrypt";
 import { decodeToken, generateRefreshToken, generateToken, verifyRefreshToken } from "../utils/jwt";
 import { RedisClient } from "../utils/redis";
@@ -26,16 +26,13 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
         }
 
         value.password = await encrypt(value.password as string);
+
         const user = await createUserService(value);
 
         return res.status(201).json({
             status: "success",
             message: "User created successfully",
-            data: {
-                id: user.id,
-                name: user.name,
-                email: user.email
-            }
+            data: user
         });
     } catch (error) {
         next(
@@ -203,13 +200,13 @@ export const logoutUser = async (req: Request, res: Response, next: NextFunction
     }
 };
 
-export const getAllUsersWithPosts = async (
+export const getCountUserPosts = async (
     req: Request,
     res: Response,
     next: NextFunction
 ): Promise<Response | undefined> => {
     try {
-        const users = await getUserWithPostsService();
+        const users = await getCountUserPostsService();
 
         return res.status(200).json({
             status: "success",
@@ -219,7 +216,7 @@ export const getAllUsersWithPosts = async (
     } catch (error) {
         next(
             new Error(
-                "Error pada file src/controllers/user.controller.ts: getAllUsersWithPosts - " +
+                "Error pada file src/controllers/user.controller.ts: getCountUserPosts - " +
                     String((error as Error).message)
             )
         );

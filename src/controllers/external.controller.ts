@@ -12,7 +12,7 @@ export const external = async (req: Request, res: Response, next: NextFunction):
     } catch (error) {
         next(
             new Error(
-                "Error pada file src/controllers/user.controller.ts: getAllUsersWithPosts - " +
+                "Error pada file src/controllers/user.controller.ts: getCountUserPosts - " +
                     String((error as Error).message)
             )
         );

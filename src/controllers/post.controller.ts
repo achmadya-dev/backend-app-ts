@@ -117,6 +117,16 @@ export const updatePost = async (req: Request, res: Response, next: NextFunction
 
 export const deletePost = async (req: Request, res: Response, next: NextFunction): Promise<Response | undefined> => {
     try {
+        const postExist = await getPostByIdService(Number(req.params.id));
+
+        if (!postExist) {
+            return res.status(404).json({
+                status: "error",
+                message: "The requested post was not found",
+                data: null
+            });
+        }
+
         const post = await deletePostService(Number(req.params.id));
 
         return res.status(200).json({
