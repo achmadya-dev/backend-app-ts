@@ -6,7 +6,6 @@ export const inputUserValidation = (post: UserType): Joi.ValidationResult<UserTy
         name: Joi.string().required(),
         email: Joi.string().email().required(),
         password: Joi.string().required().min(6),
-        role: Joi.string().required(),
         confirmPassword: Joi.any().equal(Joi.ref("password")).required().label("Confirm password")
     });
     return schema.validate(post);

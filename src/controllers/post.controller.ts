@@ -13,11 +13,11 @@ export const getAllPost = async (req: Request, res: Response, next: NextFunction
     try {
         const posts: Post[] = await getAllPostService();
         return res.status(200).json({
-            error: false,
+            status: "success",
             message: "All posts fetched successfully",
             data: posts
         });
-    } catch (error: unknown) {
+    } catch (error: Error | unknown) {
         next(
             new Error(
                 "Error pada file src/controllers/barang.controller.ts: getAllBarang - " +
@@ -33,16 +33,18 @@ export const createPost = async (req: Request, res: Response, next: NextFunction
 
         if (error) {
             return res.status(400).json({
-                error: true,
+                status: "error",
                 message: error.details[0].message,
                 data: null
             });
         }
 
+        if (req.file) value.poster = req.file.filename;
+
         const post = await createPostService(value);
 
         return res.status(201).json({
-            error: false,
+            status: "success",
             message: "Post created successfully",
             data: post
         });
@@ -62,14 +64,14 @@ export const getPostById = async (req: Request, res: Response, next: NextFunctio
 
         if (!post) {
             return res.status(404).json({
-                error: true,
+                status: "error",
                 message: "The requested post was not found",
                 data: null
             });
         }
 
         return res.status(200).json({
-            error: false,
+            status: "success",
             message: "Post fetched successfully",
             data: post
         });
@@ -86,19 +88,20 @@ export const getPostById = async (req: Request, res: Response, next: NextFunctio
 export const updatePost = async (req: Request, res: Response, next: NextFunction): Promise<Response | undefined> => {
     try {
         const { error, value } = inputPostValidation(req.body);
-
         if (error) {
             return res.status(400).json({
-                error: true,
+                status: "error",
                 message: error.details[0].message,
-                data: value
+                data: null
             });
         }
+
+        if (req.file) value.poster = req.file.filename;
 
         const post = await updatePostService(Number(req.params.id), value);
 
         return res.status(200).json({
-            error: false,
+            status: "success",
             message: "Post updated successfully",
             data: post
         });
@@ -117,7 +120,7 @@ export const deletePost = async (req: Request, res: Response, next: NextFunction
         const post = await deletePostService(Number(req.params.id));
 
         return res.status(200).json({
-            error: false,
+            status: "success",
             message: "Post deleted successfully",
             data: post
         });

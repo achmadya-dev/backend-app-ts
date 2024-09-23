@@ -10,3 +10,14 @@ services:
             - ${DB_PORT}:3306
         volumes:
             - ./docker/${DB_CONNECTION}/data:/var/lib/mysql
+
+    redis:
+        image: redis
+        restart: always
+        container_name: redis
+        ports:
+            - ${REDIS_PORT}:6379
+        volumes:
+            - ./docker/redis/data:/data
+            - ./docker/redis/redis.conf:/etc/redis/redis.conf
+        command: ["redis-server", "/etc/redis/redis.conf"]

@@ -7,8 +7,7 @@ export const createUserService = async (user: UserType): Promise<User> => {
         data: {
             name: user.name,
             email: user.email,
-            password: user.password as string,
-            role: user.role
+            password: user.password as string
         }
     });
 };
@@ -17,6 +16,14 @@ export const getUserByEmailService = async (email: string): Promise<User | null>
     return await prisma.user.findUnique({
         where: {
             email: email
+        }
+    });
+};
+
+export const getUserWithPostsService = async (): Promise<User[]> => {
+    return await prisma.user.findMany({
+        include: {
+            posts: true
         }
     });
 };

@@ -3,4 +3,5 @@ export default interface PostType {
     title: string;
     content: string;
     authorId: number;
+    poster: string | null;
 }

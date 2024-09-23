@@ -7,14 +7,12 @@ describe("User", () => {
     const email = `${Math.random().toString(36).substring(7)}@example.com`;
     const password = "password";
     const confirmPassword = "password";
-    const role = "USER";
 
     it("user create success", async () => {
         const response = await supertest(web).post("/api/register").send({
             name: name,
             email: email,
             password: password,
-            role: role,
             confirmPassword: confirmPassword
         });
         expect(response.status).toBe(201);

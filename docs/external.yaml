@@ -1,0 +1,14 @@
+paths:
+    /api/external:
+        get:
+            summary: Get all external
+            tags: [External]
+            security:
+                - BearerAuth: []
+            responses:
+                200:
+                    description: All external data fetched successfully
+                401:
+                    description: Unauthorized
+                500:
+                    description: Internal server error

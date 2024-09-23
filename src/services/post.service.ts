@@ -3,7 +3,7 @@ import PostType from "../types/post.type";
 import prisma from "../utils/client";
 
 export const getAllPostService = async (): Promise<Post[]> => {
-    return await prisma.post.findMany();
+    return await prisma.$queryRaw`SELECT * FROM "Post"`;
 };
 
 export const createPostService = async (data: PostType): Promise<Post> => {
@@ -11,7 +11,8 @@ export const createPostService = async (data: PostType): Promise<Post> => {
         data: {
             title: data.title,
             content: data.content,
-            authorId: data.authorId
+            authorId: data.authorId,
+            poster: data.poster
         }
     });
 };
