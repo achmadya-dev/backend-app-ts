@@ -1,30 +1,3 @@
-<!-- 🚀 Installation
-📂 Clone the repository
-
-bash
-Copy code
-git clone https://github.com/achmadya-dev/backend-app-ts.git
-📦 Install all dependencies
-
-bash
-Copy code
-npm install
-📋 Copy .env.example to .env
-
-bash
-Copy code
-copy .env.example .env
-🐳 Run Docker for the database
-
-bash
-Copy code
-docker compose up -d
-💻 Run the application
-
-bash
-Copy code
-npm run dev -->
-
 ## 🚀 Installation
 📂 Clone the repository
 

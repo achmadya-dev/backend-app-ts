@@ -2,6 +2,7 @@ import { Request } from "express";
 import moment from "moment";
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 
 const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback): void => {
     const filetypes = /jpeg|jpg|png|gif/;
@@ -17,7 +18,13 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: multer.FileFilt
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, "../uploads"));
+        const dir = path.join(__dirname, "../uploads");
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, {
+                recursive: true
+            });
+        }
+        cb(null, dir);
     },
     filename: (req, file, cb) => {
         cb(null, file.fieldname + "-" + moment().format("YYYY-MM-DD-HH-mm-ss") + path.extname(file.originalname));
