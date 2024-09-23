@@ -3,7 +3,7 @@ import PostType from "../types/post.type";
 import prisma from "../utils/client";
 
 export const getAllPostService = async (): Promise<Post[]> => {
-    return await prisma.$queryRaw`SELECT * FROM "Post"`;
+    return await prisma.post.findMany();
 };
 
 export const createPostService = async (data: PostType): Promise<Post> => {

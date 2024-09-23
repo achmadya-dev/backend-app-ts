@@ -1,13 +1,13 @@
 paths:
     /api/external:
         get:
-            summary: Get all external
+            summary: Get external APIs
             tags: [External]
             security:
                 - BearerAuth: []
             responses:
                 200:
-                    description: All external data fetched successfully
+                    description: External APIs fetched successfully
                 401:
                     description: Unauthorized
                 500:

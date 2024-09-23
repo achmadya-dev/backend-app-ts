@@ -67,11 +67,11 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
         }
 
         const accessToken = generateToken({ id: user.id, name: user.name, email: user.email });
+
         const refreshToken = generateRefreshToken({ id: user.id, name: user.name, email: user.email });
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            sameSite: "strict",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
@@ -131,6 +131,7 @@ export const refreshToken = async (req: Request, res: Response, next: NextFuncti
 
         // blacklist
         await RedisClient.setEx(refreshToken, remainingTime, "true");
+
         await RedisClient.setEx(accessToken, remainingTime, "true");
 
         const newAccessToken = generateToken({
@@ -147,7 +148,6 @@ export const refreshToken = async (req: Request, res: Response, next: NextFuncti
 
         res.cookie("refreshToken", newRefreshToken, {
             httpOnly: true,
-            sameSite: "strict",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
