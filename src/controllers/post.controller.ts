@@ -20,7 +20,7 @@ export const getAllPost = async (req: Request, res: Response, next: NextFunction
     } catch (error: Error | unknown) {
         next(
             new Error(
-                "Error pada file src/controllers/barang.controller.ts: getAllBarang - " +
+                "Internal server error src/controllers/barang.controller.ts: getAllBarang - " +
                     String((error as Error).message)
             )
         );

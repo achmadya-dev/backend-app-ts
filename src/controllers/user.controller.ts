@@ -37,7 +37,8 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
     } catch (error) {
         next(
             new Error(
-                "Error pada file src/controllers/user.controller.ts: registerUser - " + String((error as Error).message)
+                "Internal server error src/controllers/user.controller.ts: registerUser - " +
+                    String((error as Error).message)
             )
         );
     }
@@ -85,7 +86,8 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
     } catch (error) {
         next(
             new Error(
-                "Error pada file src/controllers/user.controller.ts: loginUser - " + String((error as Error).message)
+                "Internal server error src/controllers/user.controller.ts: loginUser - " +
+                    String((error as Error).message)
             )
         );
     }
@@ -158,7 +160,8 @@ export const refreshToken = async (req: Request, res: Response, next: NextFuncti
     } catch (error) {
         next(
             new Error(
-                "Error pada file src/controllers/user.controller.ts: refreshToken - " + String((error as Error).message)
+                "Internal server error src/controllers/user.controller.ts: refreshToken - " +
+                    String((error as Error).message)
             )
         );
     }
@@ -194,7 +197,8 @@ export const logoutUser = async (req: Request, res: Response, next: NextFunction
     } catch (error) {
         next(
             new Error(
-                "Error pada file src/controllers/user.controller.ts: logoutUser - " + String((error as Error).message)
+                "Internal server error src/controllers/user.controller.ts: logoutUser - " +
+                    String((error as Error).message)
             )
         );
     }
@@ -216,7 +220,7 @@ export const getCountUserPosts = async (
     } catch (error) {
         next(
             new Error(
-                "Error pada file src/controllers/user.controller.ts: getCountUserPosts - " +
+                "Internal server error src/controllers/user.controller.ts: getCountUserPosts - " +
                     String((error as Error).message)
             )
         );
