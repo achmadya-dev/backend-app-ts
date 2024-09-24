@@ -47,6 +47,15 @@ export const getUserByEmailService = async (email: string): Promise<User | null>
     return user[0];
 };
 
+export const getUserByIdService = async (id: number): Promise<User | null> => {
+    const user: User[] = await prisma.$queryRaw`
+        SELECT * FROM User
+        WHERE id = ${id};
+    `;
+
+    return user.length === 0 ? null : user[0];
+};
+
 export const getCountUserPostsService = async (): Promise<User[]> => {
     return await prisma.$queryRaw`
         SELECT u.id, u.name, u.email, CAST(COUNT(p.id) AS CHAR) AS totalPosts        

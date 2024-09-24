@@ -20,13 +20,9 @@ export const createPostService = async (data: PostType): Promise<Post> => {
 };
 
 export const getPostByIdService = async (id: number): Promise<Post | null> => {
-    const result: Post[] = await prisma.$queryRaw`SELECT * FROM Post WHERE id = ${id}`;
+    const post: Post[] = await prisma.$queryRaw`SELECT * FROM Post WHERE id = ${id}`;
 
-    if (result.length === 0) {
-        return null;
-    }
-
-    return result[0];
+    return post.length === 0 ? null : post[0];
 };
 
 export const updatePostService = async (id: number, data: PostType): Promise<Post> => {

@@ -8,6 +8,7 @@ import {
     updatePostService
 } from "../services/post.service";
 import { Post } from "@prisma/client";
+import { getUserByIdService } from "../services/user.service";
 
 export const getAllPost = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     try {
@@ -35,6 +36,16 @@ export const createPost = async (req: Request, res: Response, next: NextFunction
             return res.status(400).json({
                 status: "error",
                 message: error.details[0].message,
+                data: null
+            });
+        }
+
+        const authorExist = await getUserByIdService(Number(value.authorId));
+
+        if (!authorExist) {
+            return res.status(404).json({
+                status: "error",
+                message: "The requested author was not found",
                 data: null
             });
         }
@@ -92,6 +103,26 @@ export const updatePost = async (req: Request, res: Response, next: NextFunction
             return res.status(400).json({
                 status: "error",
                 message: error.details[0].message,
+                data: null
+            });
+        }
+
+        const postExist = await getPostByIdService(Number(req.params.id));
+
+        if (!postExist) {
+            return res.status(404).json({
+                status: "error",
+                message: "The requested post was not found",
+                data: null
+            });
+        }
+
+        const authorExist = await getUserByIdService(Number(value.authorId));
+
+        if (!authorExist) {
+            return res.status(404).json({
+                status: "error",
+                message: "The requested author was not found",
                 data: null
             });
         }
